@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarajevska Zima 2026 - Šahovski Turnir</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --winter-dark: #2c3e50;
+            --winter-blue: #5d8aa8;
+            --winter-light: #87ceeb;
+            --snow: #f8fbff;
+            --ice: #e8f4f8;
+            --frost: #d4e9ed;
+            --gold: #c9a227;
+            --rapid: #4a90a4;
+            --blitz: #7b68a6;
+            --text: #34495e;
+            --text-light: #7f8c8d;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, var(--ice) 0%, var(--snow) 100%);
+            min-height: 100vh;
+            color: var(--text);
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 50%, #3182ce 100%);
+            border-radius: 16px;
+            padding: 36px 24px 28px;
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(26, 54, 93, 0.4);
+        }
+
+        /* Chess Knight Silhouette */
+        .header::before {
+            content: '\265E';
+            font-family: 'Segoe UI Symbol', 'Arial Unicode MS', sans-serif;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 9rem;
+            opacity: 0.12;
+            color: white;
+        }
+
+        /* Snowflakes decoration */
+        .snowflakes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .snowflake {
+            position: absolute;
+            color: white;
+            opacity: 0.4;
+            font-size: 1rem;
+            animation: fall linear infinite;
+        }
+
+        .snowflake:nth-child(1) { left: 5%; animation-duration: 8s; animation-delay: 0s; font-size: 0.8rem; }
+        .snowflake:nth-child(2) { left: 15%; animation-duration: 10s; animation-delay: 1s; font-size: 1.2rem; }
+        .snowflake:nth-child(3) { left: 25%; animation-duration: 7s; animation-delay: 2s; font-size: 0.9rem; }
+        .snowflake:nth-child(4) { left: 40%; animation-duration: 9s; animation-delay: 0.5s; font-size: 1rem; }
+        .snowflake:nth-child(5) { left: 55%; animation-duration: 11s; animation-delay: 3s; font-size: 0.7rem; }
+        .snowflake:nth-child(6) { left: 70%; animation-duration: 8s; animation-delay: 1.5s; font-size: 1.1rem; }
+
+        @keyframes fall {
+            0% { top: -10%; opacity: 0; }
+            10% { opacity: 0.4; }
+            90% { opacity: 0.4; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header-title-main {
+            font-size: 2rem;
+            font-weight: 800;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .festival-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #d69e2e 0%, #b7791f 100%);
+            color: white;
+            padding: 10px 28px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 16px 0;
+            box-shadow: 0 4px 15px rgba(214, 158, 46, 0.4);
+        }
+
+        .festival-badge i {
+            font-size: 1.1rem;
+        }
+
+        .header-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .info-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .info-badge i {
+            opacity: 0.9;
+        }
+
+        .info-badge.highlight {
+            background: rgba(214, 158, 46, 0.2);
+            border-color: rgba(214, 158, 46, 0.4);
+        }
+
+        .info-badge.highlight i {
+            color: #fbd38d;
+        }
+
+        /* PRICING SECTION */
+        .pricing-section {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 1px solid var(--frost);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+        }
+
+        .pricing-title {
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .pricing-title i {
+            color: var(--gold);
+            font-size: 0.9rem;
+        }
+
+        .pricing-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+            border: 2px solid #e0e0e0;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .pricing-card.single {
+            border-color: #4a90a4;
+        }
+
+        .pricing-card.combo {
+            border-color: var(--gold);
+            background: linear-gradient(135deg, #fffbf0 0%, #ffffff 100%);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -8px;
+            right: 12px;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 16px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            box-shadow: 0 2px 6px rgba(231, 76, 60, 0.3);
+        }
+
+        .pricing-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+
+        .pricing-header i {
+            font-size: 1.3rem;
+            color: var(--winter-blue);
+        }
+
+        .pricing-card.combo .pricing-header i {
+            color: var(--gold);
+        }
+
+        .pricing-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text);
+        }
+
+        .pricing-amount {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--winter-blue);
+            margin: 6px 0;
+        }
+
+        .pricing-card.combo .pricing-amount {
+            color: var(--gold);
+        }
+
+        .pricing-amount-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            margin: 6px 0;
+        }
+
+        .pricing-original {
+            font-size: 0.85rem;
+            color: #999;
+            text-decoration: line-through;
+            font-weight: 500;
+        }
+
+        .pricing-amount.special {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--gold);
+        }
+
+        .pricing-note {
+            font-size: 0.65rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .pricing-note.highlight {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        /* INFO BOXES */
+        .info-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .info-row.combined {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .info-box {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid var(--frost);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            position: relative;
+        }
+
+        .info-box i {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .info-box.pricing.single { 
+            border-left: 4px solid #4a90a4; 
+        }
+        
+        .info-box.pricing.single i { 
+            color: #4a90a4; 
+        }
+
+        .info-box.pricing.combo { 
+            border-left: 4px solid var(--gold);
+            background: linear-gradient(135deg, #fffbf0 0%, #ffffff 100%);
+        }
+        
+        .info-box.pricing.combo i { 
+            color: var(--gold); 
+        }
+
+        .pricing-badge-small {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #4a90a4;
+            margin: 8px 0;
+        }
+
+        .pricing-badge-small.special {
+            color: var(--gold);
+        }
+
+        .pricing-badge-discount {
+            position: absolute;
+            top: -8px;
+            right: 8px;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            box-shadow: 0 2px 6px rgba(231, 76, 60, 0.3);
+        }
+
+        .info-box.warning { border-left: 4px solid #e74c3c; }
+        .info-box.warning i { color: #e74c3c; }
+
+        .info-box.parking { border-left: 4px solid #27ae60; }
+        .info-box.parking i { color: #27ae60; }
+
+        .info-box-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .info-box-value {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .info-box-value.highlight {
+            color: var(--gold);
+        }
+
+        /* FIDE RATING BANNER */
+        .fide-rating-banner {
+            background: linear-gradient(135deg, #2c5282 0%, #3182ce 100%);
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(44, 82, 130, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .fide-rating-banner i {
+            color: #ffd700;
+            font-size: 1rem;
+        }
+
+        /* TOURNAMENT CARDS */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--frost);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .card-header {
+            padding: 16px;
+            text-align: center;
+            color: white;
+        }
+
+        .card-header.rapid { background: var(--rapid); }
+        .card-header.blitz { background: var(--blitz); }
+
+        .card-header i { font-size: 1.5rem; margin-bottom: 6px; display: block; opacity: 0.9; }
+        .card-header h2 { font-size: 1.2rem; font-weight: 700; margin: 0; }
+        .card-header span { font-size: 0.85rem; opacity: 0.9; }
+
+        .card-body { padding: 16px; }
+
+        /* DETAILS */
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .detail {
+            background: var(--snow);
+            padding: 8px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .detail-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            color: var(--text-light);
+        }
+
+        .detail-value {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* PRIZES */
+        .prizes-section {
+            background: linear-gradient(180deg, var(--snow) 0%, var(--ice) 100%);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border: 1px solid var(--frost);
+        }
+
+        .prizes-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--winter-dark);
+            margin-bottom: 14px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .prizes-title i {
+            color: var(--gold);
+            margin-right: 6px;
+        }
+
+        .podium {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+            height: 120px;
+            margin-bottom: 16px;
+            padding: 0 10px;
+        }
+
+        .place {
+            flex: 1;
+            text-align: center;
+            padding: 12px 6px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .place.first {
+            height: 100%;
+            background: linear-gradient(180deg, #fffbeb 0%, #fef3c7 50%, #fde68a 100%);
+            border: 2px solid var(--gold);
+            box-shadow: 0 6px 20px rgba(201, 162, 39, 0.25);
+        }
+
+        .place.second {
+            height: 80%;
+            background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
+            border: 2px solid #94a3b8;
+            box-shadow: 0 4px 15px rgba(148, 163, 184, 0.25);
+        }
+
+        .place.third {
+            height: 68%;
+            background: linear-gradient(180deg, #fff7ed 0%, #fed7aa 50%, #fdba74 100%);
+            border: 2px solid #f97316;
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.2);
+        }
+
+        .place-rank {
+            position: absolute;
+            top: -12px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .place.first .place-rank { background: var(--gold); }
+        .place.second .place-rank { background: #64748b; }
+        .place.third .place-rank { background: #f97316; }
+
+        .place i {
+            font-size: 1.4rem;
+            margin-bottom: 6px;
+        }
+
+        .place.first i { color: var(--gold); }
+        .place.second i { color: #64748b; }
+        .place.third i { color: #f97316; }
+
+        .place-label {
+            font-size: 0.65rem;
+            color: var(--text-light);
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .place-amount {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .other-prizes {
+            background: white;
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 0.85rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .prize-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 0;
+            border-bottom: 1px solid var(--frost);
+        }
+
+        .prize-line:last-child { border-bottom: none; }
+
+        .prize-line span:first-child {
+            color: var(--text-light);
+        }
+
+        .prize-line span:last-child {
+            font-weight: 700;
+            color: var(--winter-dark);
+            background: var(--ice);
+            padding: 2px 10px;
+            border-radius: 4px;
+        }
+
+        .prize-category {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: white;
+            text-align: center;
+            padding: 6px 12px;
+            margin: 10px 0 6px;
+            background: linear-gradient(135deg, var(--winter-blue) 0%, var(--winter-dark) 100%);
+            border-radius: 6px;
+        }
+
+        /* SCHEDULE */
+        .schedule-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-light);
+            margin: 14px 0 8px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--frost);
+        }
+
+        .schedule {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px;
+        }
+
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 8px;
+            background: var(--snow);
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .schedule-item span:last-child { font-weight: 600; color: var(--winter-blue); }
+
+        .schedule-item.final {
+            grid-column: span 2;
+            background: var(--winter-dark);
+            color: white;
+        }
+
+        .schedule-item.final span:last-child { color: var(--winter-light); }
+
+        /* FOOTER */
+        .footer {
+            background: linear-gradient(135deg, #2c5282 0%, #3182ce 100%);
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+            border: 3px solid #1a365d;
+            box-shadow: 0 8px 30px rgba(44, 82, 130, 0.4);
+            margin-top: 20px;
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .contacts {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .contact {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px 30px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact i {
+            font-size: 1.8rem;
+            color: #ffd700;
+            margin-bottom: 6px;
+        }
+
+        .contact-label { 
+            font-size: 0.75rem; 
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .contact-value { 
+            font-size: 1.1rem; 
+            font-weight: 700;
+            color: white;
+        }
+
+        /* PRINT BUTTON */
+        .print-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--winter-dark);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .print-btn:hover { background: var(--winter-blue); }
+
+        /* RESPONSIVE */
+        @media (max-width: 700px) {
+            .container { padding: 12px; }
+            .header { padding: 20px 16px; }
+            .header-title { font-size: 1.4rem; }
+            .header-info { flex-direction: column; gap: 8px; }
+            .info-row.combined { grid-template-columns: 1fr; }
+            .info-row { grid-template-columns: 1fr; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .print-btn span { display: none; }
+            .print-btn { padding: 12px; border-radius: 50%; }
+        }
+
+        /* PRINT */
+        @media print {
+            @page {
+                size: A4;
+                margin: 5mm;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            body {
+                background: white !important;
+                font-size: 11px;
+                line-height: 1.3;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+
+            .print-btn { display: none !important; }
+
+            .header {
+                border-radius: 8px;
+                padding: 14px 14px 10px;
+                margin-bottom: 8px;
+                box-shadow: none;
+            }
+
+            .header::before {
+                font-size: 5rem;
+                opacity: 0.1;
+            }
+
+            .snowflakes { display: none; }
+
+            .header-title { font-size: 1rem; }
+            .header-title-main { font-size: 1.2rem; }
+            .festival-badge { padding: 5px 14px; font-size: 0.75rem; margin: 6px 0; }
+            .info-badge { padding: 4px 10px; font-size: 0.7rem; }
+            .header-info { gap: 6px; margin-top: 4px; }
+
+            .info-row {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+                margin-bottom: 12px;
+            }
+
+            .pricing-badge-small {
+                font-size: 1rem;
+                margin: 4px 0;
+            }
+
+            .pricing-badge-discount {
+                top: -6px;
+                right: 6px;
+                padding: 2px 6px;
+                font-size: 0.5rem;
+            }
+
+            .info-box {
+                padding: 10px 8px;
+                border-radius: 6px;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+
+            .info-box i { font-size: 1rem; margin-bottom: 3px; }
+            .info-box-label { font-size: 0.55rem; }
+            .info-box-value { font-size: 0.75rem; }
+
+            .cards-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                margin-bottom: 12px;
+            }
+
+            .card {
+                border-radius: 6px;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+
+            .card-header { padding: 10px; }
+            .card-header i { font-size: 1rem; margin-bottom: 2px; }
+            .card-header h2 { font-size: 0.9rem; }
+            .card-header span { font-size: 0.7rem; }
+
+            .card-body { 
+                padding: 10px; 
+            }
+
+            .details { gap: 5px; margin-bottom: 10px; }
+            .detail { padding: 5px; border-radius: 4px; }
+            .detail-label { font-size: 0.5rem; }
+            .detail-value { font-size: 0.7rem; }
+
+            .prizes-section {
+                padding: 8px;
+                margin-bottom: 10px;
+                border-radius: 6px;
+            }
+
+            .prizes-section {
+                background: #f8f9fa !important;
+                border: 1px solid #e0e0e0;
+            }
+
+            .prizes-title { font-size: 0.65rem; margin-bottom: 6px; background: transparent !important; }
+            .podium { height: 65px; margin-bottom: 12px; gap: 5px; padding: 0 5px; }
+            .place { padding: 6px 3px; border-radius: 6px; }
+            .place-rank { width: 15px; height: 15px; font-size: 0.5rem; top: -7px; }
+            .place i { font-size: 0.85rem; margin-bottom: 2px; }
+            .place-label { font-size: 0.45rem; }
+            .place-amount { font-size: 0.7rem; background: transparent !important; padding: 2px 4px; }
+
+            .other-prizes { padding: 6px 8px; border-radius: 5px; background: transparent !important; }
+            .prize-line { padding: 3px 0; font-size: 0.65rem; }
+            .prize-line span:last-child { padding: 1px 5px; font-size: 0.65rem; background: transparent !important; color: #2c5282; font-weight: 600; }
+            .prize-category { font-size: 0.55rem; padding: 3px 6px; margin: 5px 0 3px; border-radius: 3px; }
+
+            .festival-badge { 
+                background: #2c5282 !important; 
+                color: white !important;
+            }
+
+            .fide-rating-banner {
+                padding: 8px 12px;
+                margin-bottom: 10px;
+                font-size: 0.65rem;
+                border-radius: 6px;
+            }
+
+            .fide-rating-banner i {
+                font-size: 0.7rem;
+            }
+
+            .schedule-title { font-size: 0.6rem; margin: 8px 0 5px; padding-bottom: 3px; }
+            .schedule { gap: 2px; }
+            .schedule-item { padding: 3px 5px; font-size: 0.65rem; border-radius: 2px; }
+
+            .footer {
+                padding: 12px;
+                border-radius: 6px;
+                margin-top: 12px;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+
+            .footer-title { font-size: 0.6rem; margin-bottom: 6px; }
+            .contacts { gap: 25px; }
+            .contact i { font-size: 0.9rem; margin-bottom: 2px; }
+            .contact-label { font-size: 0.5rem; }
+            .contact-value { font-size: 0.75rem; }
+
+            /* Hide print button and any browser toolbars */
+            .print-btn, .print-btn *,
+            [class*="toolbar"], [class*="console"], [class*="preview"],
+            iframe, .windsurf-toolbar, #windsurf-toolbar { 
+                display: none !important; 
+                visibility: hidden !important;
+                height: 0 !important;
+                width: 0 !important;
+                overflow: hidden !important;
+                position: absolute !important;
+                left: -9999px !important;
+            }
+
+            body > *:not(.container) {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="snowflakes">
+                <span class="snowflake">❄</span>
+                <span class="snowflake">❅</span>
+                <span class="snowflake">❆</span>
+                <span class="snowflake">❄</span>
+                <span class="snowflake">❅</span>
+                <span class="snowflake">❆</span>
+            </div>
+            <div class="header-content">
+                <h1 class="header-title">
+                    1. Međunarodni Šahovski Turnir
+                    <span class="header-title-main">"Sarajevska Zima"</span>
+                </h1>
+                <div class="festival-badge">
+                    <i class="fas fa-chess"></i>
+                    Rapid & Blitz Festival 2026
+                </div>
+                <div class="header-info">
+                    <div class="info-badge"><i class="far fa-calendar-alt"></i> Nedjelja, 8. 2. 2026.</div>
+                    <div class="info-badge"><i class="fas fa-map-marker-alt"></i> Hotel Hollywood, Ilidža</div>
+                    <div class="info-badge highlight"><i class="fas fa-trophy"></i> NAGRADNI FOND: 1500 KM</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- INFO ROW WITH PRICING -->
+        <div class="info-row combined">
+            <div class="info-box pricing single">
+                <div class="pricing-badge-small">25 KM</div>
+                <i class="fas fa-chess-knight"></i>
+                <div class="info-box-label">Kotizacija za jedan turnir</div>
+                <div class="info-box-value">Rapid ili Blitz</div>
+            </div>
+            <div class="info-box pricing combo">
+                <div class="pricing-badge-discount">-20%</div>
+                <div class="pricing-badge-small special">40 KM</div>
+                <i class="fas fa-chess"></i>
+                <div class="info-box-label">Kotizacija za Oba turnira</div>
+                <div class="info-box-value highlight">Rapid + Blitz</div>
+            </div>
+            <div class="info-box warning">
+                <i class="fas fa-exclamation-circle"></i>
+                <div class="info-box-label">Obavezno ponijeti</div>
+                <div class="info-box-value">Garnitura i sat!</div>
+            </div>
+            <div class="info-box parking">
+                <i class="fas fa-parking"></i>
+                <div class="info-box-label">U sklopu hotela</div>
+                <div class="info-box-value">Besplatan parking</div>
+            </div>
+        </div>
+
+        <!-- FIDE RATING INFO -->
+        <div class="fide-rating-banner">
+            <i class="fas fa-star"></i>
+            <span>Turniri se rejtinguju kod FIDE za Rapid i Blitz rejting</span>
+            <i class="fas fa-star"></i>
+        </div>
+
+        <!-- CARDS -->
+        <div class="cards-grid">
+            <!-- RAPID -->
+            <div class="card">
+                <div class="card-header rapid">
+                    <i class="fas fa-sun"></i>
+                    <h2>Rapid</h2>
+                    <span>Početak u 10:00h 8. februara 2026.</span>
+                </div>
+                <div class="card-body">
+                    <div class="details">
+                        <div class="detail">
+                            <div class="detail-label">Tempo</div>
+                            <div class="detail-value">8 min + 3 sek</div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail-label">Sistem</div>
+                            <div class="detail-value">Švicarac, 7 kola</div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail-label">Pravo učešća</div>
+                            <div class="detail-value">ELO &lt; 2300</div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail-label">Kotizacija</div>
+                            <div class="detail-value">25 KM</div>
+                        </div>
+                    </div>
+
+                    <div class="prizes-section">
+                        <div class="prizes-title"><i class="fas fa-trophy"></i> Nagrade</div>
+                        <div class="podium">
+                            <div class="place second">
+                                <span class="place-rank">2</span>
+                                <i class="fas fa-medal"></i>
+                                <span class="place-label">Mjesto</span>
+                                <span class="place-amount">100 KM</span>
+                            </div>
+                            <div class="place first">
+                                <span class="place-rank">1</span>
+                                <i class="fas fa-trophy"></i>
+                                <span class="place-label">Mjesto</span>
+                                <span class="place-amount">150 KM</span>
+                            </div>
+                            <div class="place third">
+                                <span class="place-rank">3</span>
+                                <i class="fas fa-medal"></i>
+                                <span class="place-label">Mjesto</span>
+                                <span class="place-amount">80 KM</span>
+                            </div>
+                        </div>
+                        <div class="other-prizes">
+                            <div class="prize-line"><span>4. mjesto</span><span>70 KM</span></div>
+                            <div class="prize-line"><span>5. mjesto</span><span>50 KM</span></div>
+                            <div class="prize-category">Specijalne nagrade (ELO)</div>
+                            <div class="prize-line"><span>Najbolji do 2150</span><span>50 KM</span></div>
+                            <div class="prize-line"><span>Najbolji do 2050</span><span>50 KM</span></div>
+                            <div class="prize-line"><span>Najbolji do 1950</span><span>50 KM</span></div>
+                            <div class="prize-line"><span>Najbolji do 1850</span><span>50 KM</span></div>
+                            <div class="prize-line"><span>Najbolji do 1750</span><span>50 KM</span></div>
+                            <div class="prize-category">Ostale specijalne nagrade</div>
+                            <div class="prize-line"><span>Najuspješniji kadet/kadetkinja (2008. i mlađi)</span><span>50 KM</span></div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-title"><i class="far fa-clock"></i> Satnica za Rapid</div>
+                    <div class="schedule">
+                        <div class="schedule-item"><span>1. kolo</span><span>10:00</span></div>
+                        <div class="schedule-item"><span>2. kolo</span><span>10:30</span></div>
+                        <div class="schedule-item"><span>3. kolo</span><span>11:00</span></div>
+                        <div class="schedule-item"><span>4. kolo</span><span>11:30</span></div>
+                        <div class="schedule-item"><span>5. kolo</span><span>12:00</span></div>
+                        <div class="schedule-item"><span>6. kolo</span><span>12:30</span></div>
+                        <div class="schedule-item"><span>7. kolo</span><span>13:00</span></div>
+                        <div class="schedule-item final"><span>Dodjela nagrada</span><span>13:30 - 14:00</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLITZ -->
+            <div class="card">
+                <div class="card-header blitz">
+                    <i class="fas fa-bolt"></i>
+                    <h2>Blitz</h2>
+                    <span>Početak u 15:00h 8. februara 2026.</span>
+                </div>
+                <div class="card-body">
+                    <div class="details">
+                        <div class="detail">
+                            <div class="detail-label">Tempo</div>
+                            <div class="detail-value">3 min + 2 sek</div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail-label">Sistem</div>
+                            <div class="detail-value">Švicarac, 11 kola</div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail-label">Pravo učešća</div>
+                            <div class="detail-value">ELO &lt; 2300</div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail-label">Kotizacija</div>
+                            <div class="detail-value">25 KM</div>
+                        </div>
+                    </div>
+
+                    <div class="prizes-section">
+                        <div class="prizes-title"><i class="fas fa-trophy"></i> Nagrade</div>
+                        <div class="podium">
+                            <div class="place second">
+                                <span class="place-rank">2</span>
+                                <i class="fas fa-medal"></i>
+                                <span class="place-label">Mjesto</span>
+                                <span class="place-amount">100 KM</span>
+                            </div>
+                            <div class="place first">
+                                <span class="place-rank">1</span>
+                                <i class="fas fa-trophy"></i>
+                                <span class="place-label">Mjesto</span>
+                                <span class="place-amount">150 KM</span>
+                            </div>
+                            <div class="place third">
+                                <span class="place-rank">3</span>
+                                <i class="fas fa-medal"></i>
+                                <span class="place-label">Mjesto</span>
+                                <span class="place-amount">80 KM</span>
+                            </div>
+                        </div>
+                        <div class="other-prizes">
+                            <div class="prize-line"><span>4. mjesto</span><span>70 KM</span></div>
+                            <div class="prize-line"><span>5. mjesto</span><span>50 KM</span></div>
+                            <div class="prize-category">Specijalne nagrade (ELO)</div>
+                            <div class="prize-line"><span>Najbolji do 2150</span><span>50 KM</span></div>
+                            <div class="prize-line"><span>Najbolji do 2050</span><span>50 KM</span></div>
+                            <div class="prize-line"><span>Najbolji do 1950</span><span>50 KM</span></div>
+                            <div class="prize-line"><span>Najbolji do 1850</span><span>50 KM</span></div>
+                            <div class="prize-line"><span>Najbolji do 1750</span><span>50 KM</span></div>
+                            <div class="prize-category">Ostale specijalne nagrade</div>
+                            <div class="prize-line"><span>Najuspješniji kadet/kadetkinja (2008. i mlađi)</span><span>50 KM</span></div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-title"><i class="far fa-clock"></i> Satnica za Blitz</div>
+                    <div class="schedule">
+                        <div class="schedule-item"><span>1. kolo</span><span>15:00</span></div>
+                        <div class="schedule-item"><span>2. kolo</span><span>15:15</span></div>
+                        <div class="schedule-item"><span>3. kolo</span><span>15:30</span></div>
+                        <div class="schedule-item"><span>4. kolo</span><span>15:45</span></div>
+                        <div class="schedule-item"><span>5. kolo</span><span>16:00</span></div>
+                        <div class="schedule-item"><span>6. kolo</span><span>16:15</span></div>
+                        <div class="schedule-item"><span>7. kolo</span><span>16:30</span></div>
+                        <div class="schedule-item"><span>8. kolo</span><span>16:45</span></div>
+                        <div class="schedule-item"><span>9. kolo</span><span>17:00</span></div>
+                        <div class="schedule-item"><span>10. kolo</span><span>17:15</span></div>
+                        <div class="schedule-item"><span>11. kolo</span><span>17:30</span></div>
+                        <div class="schedule-item final"><span>Dodjela nagrada</span><span>17:45 - 18:00</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-title">PRIJAVE NA TURNIR</div>
+            <div class="contacts">
+                <div class="contact">
+                    <i class="fas fa-user"></i>
+                    <span class="contact-label">Sudija</span>
+                    <span class="contact-value">Dino Markovic</span>
+                </div>
+                <div class="contact">
+                    <i class="fas fa-phone"></i>
+                    <span class="contact-label">Telefon</span>
+                    <span class="contact-value">+387 61 514 069</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <button onclick="window.print()" class="print-btn">
+        <i class="fas fa-file-pdf"></i>
+        <span>Sačuvaj PDF</span>
+    </button>
+</body>
+</html>

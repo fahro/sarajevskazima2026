@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raspis Turnira - Sarajevska Zima 2026</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e3c72;
+            --primary-dark: #2a5298;
+            --accent: #d4af37; /* Gold */
+            --rapid-color: #2980b9;
+            --blitz-color: #8e44ad;
+            --text-dark: #2c3e50;
+            --text-light: #ecf0f1;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --danger: #c0392b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.3;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-height: 100vh;
+            padding-bottom: 20px;
+        }
+
+        /* HEADER SECTION */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--text-light);
+            padding: 20px 10px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '\f441';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 10rem;
+            opacity: 0.1;
+            transform: rotate(15deg);
+        }
+
+        .main-title {
+            font-size: 2rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            line-height: 1.1;
+        }
+
+        .sub-title {
+            font-size: 1.4rem;
+            color: #ffd700;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px 25px;
+            border-radius: 50px;
+            margin-top: 10px;
+            font-weight: 800;
+            display: inline-block;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .header-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+            font-size: 1rem;
+        }
+
+        .badge {
+            background: rgba(255,255,255,0.15);
+            padding: 5px 12px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* INFO ROW (Ponuda & Upozorenje) */
+        .info-row {
+            display: flex; 
+            gap: 10px; 
+            padding: 0 20px; 
+            justify-content: center;
+        }
+
+        .special-offer {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            text-align: center;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-size: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            flex-direction: column;
+        }
+
+        .special-offer .price-tag {
+            background: #d4af37;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .critical-warning {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ef5350;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex: 1;
+        }
+
+        /* MAIN GRID */
+        .tournament-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding: 0 20px;
+            align-items: start;
+        }
+
+        .card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card-header {
+            padding: 10px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        .bg-rapid { background: var(--rapid-color); }
+        .bg-blitz { background: var(--blitz-color); }
+
+        .card-body {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .details-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 15px 0;
+            font-size: 0.9rem;
+        }
+
+        .details-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* PRIZE STYLES */
+        .prizes-container {
+            margin-bottom: 15px;
+        }
+        
+        .podium {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+            align-items: flex-end;
+            height: 90px;
+        }
+
+        .podium-place {
+            flex: 1;
+            text-align: center;
+            padding: 5px 2px;
+            border-radius: 6px;
+            background: #f8f9fa;
+            border: 1px solid #eee;
+            font-size: 0.85rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .podium-place.gold {
+            background: linear-gradient(to bottom, #fff9db, #fff);
+            border-color: #f1c40f;
+            height: 100%;
+            border-bottom: 3px solid #f1c40f;
+        }
+        
+        .podium-place.silver { height: 85%; border-bottom: 3px solid #bdc3c7; }
+        .podium-place.bronze { height: 75%; border-bottom: 3px solid #cd7f32; }
+
+        .medal-icon { font-size: 1.2rem; margin-bottom: 2px; display: block; }
+        .gold-trophy { color: #f1c40f; }
+        .silver-trophy { color: #bdc3c7; }
+        .bronze-trophy { color: #cd7f32; }
+
+        .prize-amount {
+            display: block;
+            font-weight: 800;
+            color: var(--text-dark);
+            font-size: 1rem;
+        }
+        
+        .prize-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 1px;
+            display: block;
+        }
+
+        .other-prizes-list {
+            font-size: 0.85rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 8px 12px;
+        }
+
+        .prize-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 3px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .prize-row:last-child { border-bottom: none; }
+
+        .prize-category-title {
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #999;
+            margin: 8px 0 3px 0;
+            text-align: center;
+        }
+
+        /* SCHEDULE STYLES */
+        .schedule-box {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        
+        .schedule-header {
+            background: #f1f2f6;
+            color: var(--text-dark);
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 6px 10px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .schedule-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 100%;
+        }
+
+        .schedule-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 10px;
+            font-size: 0.85rem;
+            border-bottom: 1px solid #f0f0f0;
+            border-right: 1px solid #f0f0f0;
+        }
+
+        .schedule-row:nth-child(2n) { border-right: none; }
+        
+        .schedule-list .schedule-row:nth-child(4n-1),
+        .schedule-list .schedule-row:nth-child(4n) {
+            background-color: #fafafa;
+        }
+
+        .schedule-list .schedule-row:last-child {
+            background-color: #e8f4fd !important;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* FOOTER */
+        .footer-section {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .contact-item i { font-size: 1.2rem; color: var(--accent); }
+
+        .action-bar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .btn-print {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* MEDIA QUERIES ZA MOBILNE UREĐAJE */
+        @media (max-width: 768px) {
+            .tournament-grid {
+                grid-template-columns: 1fr; /* Kartice jedna ispod druge */
+                padding: 0 10px;
+            }
+            
+            .info-row {
+                flex-direction: column; /* Kotizacija i upozorenje jedno ispod drugog */
+                padding: 0 10px;
+                gap: 5px;
+            }
+
+            .main-title {
+                font-size: 1.5rem;
+            }
+
+            .sub-title {
+                font-size: 1rem;
+                padding: 6px 15px;
+                margin-top: 5px;
+            }
+
+            .header-info {
+                font-size: 0.9rem;
+            }
+            
+            .badge {
+                width: 100%;
+                justify-content: center;
+            }
+
+            header::before {
+                font-size: 6rem; /* Manja ikona u pozadini */
+                top: -10px;
+                right: -10px;
+            }
+            
+            .action-bar {
+                bottom: 10px;
+                right: 10px;
+            }
+            
+            .btn-print span {
+                display: none; /* Sakrij tekst na dugmetu, ostavi ikonu na malim ekranima */
+            }
+            .btn-print {
+                padding: 10px;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                justify-content: center;
+            }
+        }
+
+        /* PRINT SETTINGS */
+        @media print {
+            @page {
+                margin: 0.5cm;
+                size: A4 portrait;
+            }
+            body { 
+                background: white; 
+                font-size: 11px;
+                -webkit-print-color-adjust: exact;
+            }
+            .container { 
+                box-shadow: none; 
+                width: 100%; 
+                max-width: 100%; 
+                margin: 0;
+                padding: 0;
+            }
+            .action-bar { display: none; }
+            
+            header { padding: 10px 0; }
+            .main-title { font-size: 1.6rem; }
+            .header-info { margin-top: 5px; gap: 5px; }
+            .badge { padding: 2px 8px; font-size: 0.9rem; border: 1px solid #ccc; }
+            
+            .info-row { display: flex; padding: 0; } /* Force row in print */
+            
+            .special-offer, .critical-warning { 
+                margin: 5px 0; 
+                padding: 5px; 
+                border: 1px solid #ccc !important;
+            }
+
+            .tournament-grid { gap: 10px; padding: 0; display: grid; grid-template-columns: 1fr 1fr; } /* Force 2 cols in print even if screen is small */
+            .card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+            .card-body { padding: 8px; }
+            
+            .podium { height: 70px; margin-bottom: 5px; }
+            
+            .footer-section { 
+                padding: 10px; 
+                margin-top: 10px; 
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1 class="main-title">1. Međunarodni Šahovski Turnir<br>“Sarajevska Zima”</h1>
+            <div class="sub-title"><i class="fas fa-chess"></i> Rapid & Blitz Festival 2026</div>
+            
+            <div class="header-info">
+                <div class="badge"><i class="far fa-calendar-alt"></i> Nedjelja 8. 2. 2026.</div>
+                <div class="badge"><i class="fas fa-map-marker-alt"></i> Hotel Hollywood, Ilidža</div>
+                <div class="badge"><i class="fas fa-trophy"></i> Ukupan fond: 1600 KM</div>
+            </div>
+        </header>
+
+        <!-- Info Row (Modified for better mobile structure) -->
+        <div class="info-row">
+            <div class="special-offer">
+                <div style="font-size: 1.1rem; font-weight: bold; color: #b45309;">
+                    <i class="fas fa-check-circle"></i> KOTIZACIJA ZA RAPID I BLITZ ZAJEDNO: <span class="price-tag" style="font-size: 1.1rem;">40 KM</span>
+                </div>
+            </div>
+            <div class="critical-warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>OBAVEZNO: Garnitura i sat!</span>
+            </div>
+        </div>
+
+        <div class="tournament-grid">
+            <!-- RAPID CARD -->
+            <div class="card">
+                <div class="card-header bg-rapid">
+                    <i class="fas fa-sun"></i> Rapid (10:00h)
+                </div>
+                <div class="card-body">
+                    <ul class="details-list">
+                        <li><span><i class="fas fa-stopwatch"></i> Tempo</span> <strong>8 min + 3 sek</strong></li>
+                        <li><span><i class="fas fa-chess-board"></i> Sistem</span> <strong>Švicarac, 7 kola</strong></li>
+                        <li><span><i class="fas fa-clock"></i> Uplata do</span> <strong>10:00h</strong></li>
+                        <li><span><i class="fas fa-users"></i> Pravo</span> <strong>ELO < 2300 (Rapid)</strong></li>
+                        <li><span><i class="fas fa-coins"></i> Kotizacija</span> <strong>25 KM</strong></li>
+                    </ul>
+
+                    <div class="prizes-container">
+                        <div class="podium">
+                            <div class="podium-place silver">
+                                <span class="medal-icon silver-trophy"><i class="fas fa-medal"></i></span>
+                                <span class="prize-label">2. Mj.</span>
+                                <span class="prize-amount">100 KM</span>
+                            </div>
+                            <div class="podium-place gold">
+                                <span class="medal-icon gold-trophy"><i class="fas fa-trophy"></i></span>
+                                <span class="prize-label">1. Mj.</span>
+                                <span class="prize-amount">150 KM</span>
+                            </div>
+                            <div class="podium-place bronze">
+                                <span class="medal-icon bronze-trophy"><i class="fas fa-medal"></i></span>
+                                <span class="prize-label">3. Mj.</span>
+                                <span class="prize-amount">80 KM</span>
+                            </div>
+                        </div>
+
+                        <div class="other-prizes-list">
+                            <div class="prize-row">
+                                <span>4. Mjesto</span> <span><b>70 KM</b></span>
+                            </div>
+                            <div class="prize-row">
+                                <span>5. Mjesto</span> <span><b>50 KM</b></span>
+                            </div>
+                            
+                            <div class="prize-category-title">Specijalne (ELO)</div>
+                            <div class="prize-row">
+                                <span>Najbolji do 2150</span> <span><b>100 KM</b></span>
+                            </div>
+                            <div class="prize-row">
+                                <span>Najbolji do 2050</span> <span><b>80 KM</b></span>
+                            </div>
+                            <div class="prize-row">
+                                <span>Najbolji do 1950</span> <span><b>70 KM</b></span>
+                            </div>
+                            <div class="prize-row">
+                                <span>Najbolji do 1850</span> <span><b>50 KM</b></span>
+                            </div>
+                            <div class="prize-row">
+                                <span>Najbolji do 1750</span> <span><b>50 KM</b></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-box">
+                        <div class="schedule-header"><i class="far fa-clock"></i> SATNICA (Rapid)</div>
+                        <div class="schedule-list">
+                            <div class="schedule-row"><span>1. Kolo</span> <span>10:00</span></div>
+                            <div class="schedule-row"><span>2. Kolo</span> <span>10:30</span></div>
+                            <div class="schedule-row"><span>3. Kolo</span> <span>11:00</span></div>
+                            <div class="schedule-row"><span>4. Kolo</span> <span>11:30</span></div>
+                            <div class="schedule-row"><span>5. Kolo</span> <span>12:00</span></div>
+                            <div class="schedule-row"><span>6. Kolo</span> <span>12:30</span></div>
+                            <div class="schedule-row"><span>7. Kolo</span> <span>13:00</span></div>
+                            <div class="schedule-row"><span>Dodjela nagrada</span> <span>13:3Najbolji do 14:00</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLITZ CARD -->
+            <div class="card">
+                <div class="card-header bg-blitz">
+                    <i class="fas fa-moon"></i> Blitz (15:00h)
+                </div>
+                <div class="card-body">
+                    <ul class="details-list">
+                        <li><span><i class="fas fa-stopwatch"></i> Tempo</span> <strong>3 min + 2 sek</strong></li>
+                        <li><span><i class="fas fa-chess-board"></i> Sistem</span> <strong>Švicarac, 11 kola</strong></li>
+                        <li><span><i class="fas fa-clock"></i> Uplata do</span> <strong>15:00h</strong></li>
+                        <li><span><i class="fas fa-users"></i> Pravo</span> <strong>ELO < 2300 (Blitz)</strong></li>
+                        <li><span><i class="fas fa-coins"></i> Kotizacija</span> <strong>25 KM</strong></li>
+                    </ul>
+
+                     <div class="prizes-container">
+                        <div class="podium">
+                            <div class="podium-place silver">
+                                <span class="medal-icon silver-trophy"><i class="fas fa-medal"></i></span>
+                                <span class="prize-label">2. Mj.</span>
+                                <span class="prize-amount">100 KM</span>
+                            </div>
+                            <div class="podium-place gold">
+                                <span class="medal-icon gold-trophy"><i class="fas fa-trophy"></i></span>
+                                <span class="prize-label">1. Mj.</span>
+                                <span class="prize-amount">150 KM</span>
+                            </div>
+                            <div class="podium-place bronze">
+                                <span class="medal-icon bronze-trophy"><i class="fas fa-medal"></i></span>
+                                <span class="prize-label">3. Mj.</span>
+                                <span class="prize-amount">80 KM</span>
+                            </div>
+                        </div>
+
+                        <div class="other-prizes-list">
+                            <div class="prize-row">
+                                <span>4. Mjesto</span> <span><b>70 KM</b></span>
+                            </div>
+                            <div class="prize-row">
+                                <span>5. Mjesto</span> <span><b>50 KM</b></span>
+                            </div>
+                            
+                            <div class="prize-category-title">Specijalne (ELO)</div>
+                            <div class="prize-row">
+                                <span>Najbolji do 2150</span> <span><b>100 KM</b></span>
+                            </div>
+                            <div class="prize-row">
+                                <span>Najbolji do 2050</span> <span><b>80 KM</b></span>
+                            </div>
+                            <div class="prize-row">
+                                <span>Najbolji do 1950</span> <span><b>70 KM</b></span>
+                            </div>
+                            <div class="prize-row">
+                                <span>Najbolji do 1850</span> <span><b>50 KM</b></span>
+                            </div>
+                             <div class="prize-row">
+                                <span>Najbolji do 1750</span> <span><b>50 KM</b></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-box">
+                        <div class="schedule-header"><i class="far fa-clock"></i> SATNICA (Blitz)</div>
+                        <div class="schedule-list">
+                            <div class="schedule-row"><span>1. Kolo</span> <span>15:00</span></div>
+                            <div class="schedule-row"><span>2. Kolo</span> <span>15:15</span></div>
+                            <div class="schedule-row"><span>3. Kolo</span> <span>15:30</span></div>
+                            <div class="schedule-row"><span>4. Kolo</span> <span>15:45</span></div>
+                            <div class="schedule-row"><span>5. Kolo</span> <span>16:00</span></div>
+                            <div class="schedule-row"><span>6. Kolo</span> <span>16:15</span></div>
+                            <div class="schedule-row"><span>7. Kolo</span> <span>16:30</span></div>
+                            <div class="schedule-row"><span>8. Kolo</span> <span>16:45</span></div>
+                            <div class="schedule-row"><span>9. Kolo</span> <span>17:00</span></div>
+                            <div class="schedule-row"><span>10. Kolo</span> <span>17:15</span></div>
+                            <div class="schedule-row"><span>11. Kolo</span> <span>17:30</span></div>
+                            <div class="schedule-row"><span>Dodjela nagrada</span> <span>17:45 - 18:00</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <i class="fas fa-user-tie"></i> <strong>Dino Markovic</strong> (Sudija)
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i> <strong>+387 61 514 069</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-bar">
+        <button onclick="window.print()" class="btn-print">
+            <i class="fas fa-file-pdf"></i> <span style="margin-left:5px;">Sačuvaj kao PDF</span>
+        </button>
+    </div>
+
+</body>
+</html>
