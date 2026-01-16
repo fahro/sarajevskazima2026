@@ -766,7 +766,7 @@
         @media print {
             @page {
                 size: A4;
-                margin: 5mm;
+                margin: 8mm;
             }
 
             * {
@@ -776,23 +776,141 @@
 
             body {
                 background: white !important;
-                font-size: 11px;
-                line-height: 1.3;
+                font-size: 7px !important;
+                line-height: 1.2 !important;
             }
 
             .container {
-                max-width: 100%;
-                padding: 0;
-                margin: 0;
+                max-width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
             }
 
             .print-btn { display: none !important; }
 
             .header {
-                border-radius: 8px;
-                padding: 14px 14px 10px;
-                margin-bottom: 8px;
-                box-shadow: none;
+                padding: 6px 8px 4px !important;
+                margin-bottom: 3px !important;
+                border-radius: 3px !important;
+                box-shadow: none !important;
+                page-break-inside: avoid !important;
+            }
+
+            .header::before {
+                font-size: 2.5rem !important;
+                opacity: 0.08 !important;
+            }
+
+            .snowflakes { display: none !important; }
+
+            .header-title { font-size: 0.7rem !important; margin-bottom: 1px !important; }
+            .header-title-main { font-size: 0.85rem !important; }
+            .festival-badge { padding: 2px 6px !important; font-size: 0.5rem !important; margin: 2px 0 !important; }
+            .info-badge { padding: 2px 5px !important; font-size: 0.48rem !important; }
+            .header-info { gap: 2px !important; margin-top: 2px !important; }
+
+            .info-row {
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 3px !important;
+                margin-bottom: 3px !important;
+            }
+
+            .pricing-badge-small { font-size: 0.65rem !important; margin: 1px 0 !important; }
+            .pricing-badge-discount { top: -3px !important; right: 3px !important; padding: 1px 2px !important; font-size: 0.38rem !important; }
+
+            .info-box {
+                padding: 3px 2px !important;
+                border-radius: 2px !important;
+                box-shadow: none !important;
+                border: 0.5px solid #ddd !important;
+            }
+
+            .info-box i { font-size: 0.65rem !important; margin-bottom: 1px !important; }
+            .info-box-label { font-size: 0.42rem !important; }
+            .info-box-value { font-size: 0.52rem !important; }
+
+            .fide-rating-banner {
+                padding: 2px 5px !important;
+                margin-bottom: 3px !important;
+                font-size: 0.48rem !important;
+                border-radius: 2px !important;
+            }
+
+            .fide-rating-banner i { font-size: 0.48rem !important; }
+
+            .cards-grid {
+                grid-template-columns: 1fr 1fr !important;
+                gap: 3px !important;
+                margin-bottom: 3px !important;
+            }
+
+            .card {
+                border-radius: 2px !important;
+                box-shadow: none !important;
+                border: 0.5px solid #ddd !important;
+                page-break-inside: avoid !important;
+            }
+
+            .card-header { padding: 3px !important; }
+            .card-header i { font-size: 0.65rem !important; margin-bottom: 0 !important; }
+            .card-header h2 { font-size: 0.65rem !important; }
+            .card-header span { font-size: 0.48rem !important; }
+
+            .card-body { padding: 3px !important; }
+
+            .details { gap: 2px !important; margin-bottom: 3px !important; }
+            .detail { padding: 2px !important; border-radius: 2px !important; }
+            .detail-label { font-size: 0.38rem !important; }
+            .detail-value { font-size: 0.48rem !important; }
+
+            .prizes-section {
+                padding: 2px !important;
+                margin-bottom: 3px !important;
+                border-radius: 2px !important;
+                background: #f8f9fa !important;
+                border: 0.5px solid #e0e0e0 !important;
+            }
+
+            .prizes-title { font-size: 0.48rem !important; margin-bottom: 2px !important; }
+            .podium { height: 35px !important; margin-bottom: 3px !important; gap: 2px !important; padding: 0 2px !important; }
+            .place { padding: 2px 1px !important; border-radius: 2px !important; }
+            .place-rank { width: 9px !important; height: 9px !important; font-size: 0.38rem !important; top: -4px !important; }
+            .place i { font-size: 0.55rem !important; margin-bottom: 0 !important; }
+            .place-label { font-size: 0.32rem !important; }
+            .place-amount { font-size: 0.48rem !important; padding: 1px 2px !important; }
+
+            .other-prizes { padding: 2px 3px !important; border-radius: 2px !important; }
+            .prize-line { padding: 0.5px 0 !important; font-size: 0.45rem !important; }
+            .prize-line span:last-child { padding: 0 2px !important; font-size: 0.45rem !important; }
+            .prize-category { font-size: 0.42rem !important; padding: 1px 2px !important; margin: 1px 0 !important; border-radius: 1px !important; }
+
+            .schedule-title { font-size: 0.45rem !important; margin: 2px 0 1px !important; padding-bottom: 1px !important; }
+            .schedule { gap: 1px !important; }
+            .schedule-item { padding: 1px 2px !important; font-size: 0.45rem !important; border-radius: 1px !important; }
+
+            .footer {
+                padding: 3px !important;
+                border-radius: 2px !important;
+                margin-top: 3px !important;
+                box-shadow: none !important;
+                border: 0.5px solid #ddd !important;
+                page-break-inside: avoid !important;
+            }
+
+            .footer-title { font-size: 0.48rem !important; margin-bottom: 2px !important; }
+            .contacts { gap: 6px !important; }
+            .contact i { font-size: 0.55rem !important; margin-bottom: 0 !important; }
+            .contact-label { font-size: 0.38rem !important; }
+            .contact-value { font-size: 0.52rem !important; }
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .container { padding: 10px; }
+            
+            .header { 
+                padding: 20px 15px 16px; 
+                margin-bottom: 12px;
             }
 
             .header::before {
@@ -1015,6 +1133,13 @@
             <i class="fas fa-info-circle"></i>
             <span>Nagrade nisu kumulativne. Prednost kod jednakih nagrada ima redovna.</span>
             <i class="fas fa-info-circle"></i>
+        </div>
+
+        <!-- REGISTRATION DEADLINE -->
+        <div class="fide-rating-banner" style="background: linear-gradient(135deg, #27ae60 0%, #229954 100%);">
+            <i class="fas fa-calendar-check"></i>
+            <span>Prijave na turnir najkasnije do 7. 02. 2026. u 20:00h</span>
+            <i class="fas fa-calendar-check"></i>
         </div>
 
         <!-- CARDS -->
